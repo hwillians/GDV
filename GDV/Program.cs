@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MesClasses;
+using System;
 
 namespace GDV
 {
@@ -6,7 +7,7 @@ namespace GDV
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Menu.Selection();
         }
     }
 }
