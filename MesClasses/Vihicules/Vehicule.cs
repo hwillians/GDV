@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MesClasses.Vihicules
 {
-    abstract class Vehicule
+    public abstract class Vehicule
     {
         public string Marque { get; set; }
         public string Modele { get; set; }
