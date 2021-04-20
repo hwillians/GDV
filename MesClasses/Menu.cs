@@ -28,7 +28,7 @@ namespace MesClasses
                 switch (choix)
                 {
                     case 1: vehicules.Add(CreerVehicule()); break;
-                    case 2: Console.WriteLine("Cette action n'est pas encore disponible"); break;
+                    case 2: LireVehicule(vehicules); break;
                     case 3: Console.WriteLine("Cette action n'est pas encore disponible"); break;
                     case 4: Console.WriteLine("Cette action n'est pas encore disponible"); break;
                     case 5: Console.WriteLine("Cette action n'est pas encore disponible"); break;
