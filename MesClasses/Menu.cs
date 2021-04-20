@@ -39,7 +39,7 @@ namespace MesClasses
                     case 3: ModifierVehicule(vehicules); break;
                     case 4: SupprimerVehicule(vehicules); break;
                     case 5: TrierVehicules(vehicules); break;
-                    case 6: Console.WriteLine("Cette action n'est pas encore disponible"); break;
+                    case 6: FiltrerVehicules(vehicules); break;
                     case 7: Console.WriteLine("Cette action n'est pas encore disponible"); break;
                     case 0: Console.WriteLine("à bientôt..."); break;
                     default: Console.WriteLine("Action pas recunnue"); break;

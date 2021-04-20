@@ -3,7 +3,7 @@
     public class Camion : Vehicule
     {
         public int Poids { get; set; }
-        public Camion(string marque, string modele, int numero, int poids) : base(marque, modele, numero)
+        public Camion(string marque, string modele, int numero, int poids = 0) : base(marque, modele, numero)
         {
             Poids = poids;
         }

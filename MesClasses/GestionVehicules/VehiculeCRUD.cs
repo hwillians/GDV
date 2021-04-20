@@ -30,7 +30,6 @@ namespace MesClasses.GestionVehicules
             return vehicule;
         }
 
-
         public static Vehicule LireVehicule(List<Vehicule> vehicules)
         {
             if (vehicules.Count == 0) WriteLine("Il y a pas des vehicules enregistrés");
@@ -82,7 +81,6 @@ namespace MesClasses.GestionVehicules
             }
         }
 
-
         public static void SupprimerVehicule(List<Vehicule> vehicules)
         {
             Vehicule vehicule = LireVehicule(vehicules);
@@ -115,6 +113,52 @@ namespace MesClasses.GestionVehicules
                     WriteLine(String.Join("\n", vehicules.Where(v => UneVoiture(v)).OrderBy(v => (v as Voiture).Puissance))); break;
                 default: break;
             }
+        }
+
+        public static void FiltrerVehicules(List<Vehicule> vehicules)
+        {
+            string filtre = "";
+
+            while (filtre != "ma" && filtre != "mo" && filtre != "nu" && filtre != "po" && filtre != "pu")
+            {
+                filtre = GetString($"Sur quel critère voulez vous filtrer ? \n " +
+                     $"marque : ma, modèle : mo, numéro : nu,  puissance : pu, poids : ");
+            }
+
+            switch (filtre)
+            {
+                case "ma":
+                    {
+                        var marque = GetString("Marque : ").ToLower();
+                        AfficherVehiculesFiltres(vehicules.Where(v => v.Marque.ToLower().StartsWith(marque)));
+                    }
+                    break;
+                case "mo":
+                    {
+                        var modele = GetString("Modèle : ").ToLower();
+                        AfficherVehiculesFiltres(vehicules.Where(v => v.Modele.ToLower().StartsWith(modele)));
+                    }
+                    break;
+                case "nu":
+                    {
+                        var numero = GetInt("Numèro : ");
+                        AfficherVehiculesFiltres(vehicules.Where(v => v.Numero == numero));
+                    }
+                    break;
+                case "po":
+                    {
+                        var poids = GetInt("Poids : ");
+                        AfficherVehiculesFiltres(vehicules.Where(v => !UneVoiture(v)).Where(v => (v as Camion).Poids == poids)); break;
+                    }
+                case "pu":
+                    {
+                        var puissance = GetInt("Puissance : ");
+                        AfficherVehiculesFiltres(vehicules.Where(v => UneVoiture(v)).Where(v => (v as Voiture).Puissance == puissance)); break;
+                    }
+                default: break;
+            }
+            static void AfficherVehiculesFiltres(IEnumerable<Vehicule> vehiculesFiltres) =>
+                WriteLine(!vehiculesFiltres.Any() ? "Aucun vehicule corresponde à votre recherche." : String.Join("\n", vehiculesFiltres));
         }
     }
 }
