@@ -30,7 +30,6 @@ namespace MesClasses.GestionVehicules
             return vehicule;
         }
 
-
         public static Vehicule LireVehicule(List<Vehicule> vehicules)
         {
             if (vehicules.Count == 0) WriteLine("Il y a pas des vehicules enregistrés");
@@ -82,7 +81,6 @@ namespace MesClasses.GestionVehicules
             }
         }
 
-
         public static void SupprimerVehicule(List<Vehicule> vehicules)
         {
             Vehicule vehicule = LireVehicule(vehicules);
@@ -113,6 +111,37 @@ namespace MesClasses.GestionVehicules
                     WriteLine(String.Join("\n", vehicules.Where(v => !UneVoiture(v)).OrderBy(v => (v as Camion).Poids))); break;
                 case "pu":
                     WriteLine(String.Join("\n", vehicules.Where(v => UneVoiture(v)).OrderBy(v => (v as Voiture).Puissance))); break;
+                default: break;
+            }
+        }
+
+        public static void FiltrerVehicules(List<Vehicule> vehicules)
+        {
+            string filtre = "";
+
+            while (filtre != "ma" && filtre != "mo" && filtre != "nu" && filtre != "po" && filtre != "pu")
+            {
+                filtre = GetString($"Sur quel critère voulez vous filtrer ? \n " +
+                     $"marque : ma, modèle : mo, numéro : nu,  puissance : pu, poids : ");
+            }
+
+            switch (filtre)
+            {
+                case "ma":
+                     WriteLine(String.Join("\n", vehicules.Where(v => v.Marque.Contains(GetString("Marque : "))))); 
+                    break;
+                case "mo":
+                    WriteLine(String.Join("\n", vehicules.Where(v => v.Modele == GetString("Modèle : "))));
+                    break;
+                case "nu":
+                    WriteLine(String.Join("\n", vehicules.Where(v => v.Numero == GetInt("Numèro : ")))); 
+                    break;
+                case "po":
+                    WriteLine(String.Join("\n", vehicules.Where(v => !UneVoiture(v))
+                        .Where(v => (v as Camion).Poids == GetInt("Poids : ")))); break;
+                case "pu":
+                    WriteLine(String.Join("\n", vehicules.Where(v => UneVoiture(v))
+                        .Where(v => (v as Voiture).Puissance == GetInt("Puissance : ")))); break;
                 default: break;
             }
         }
