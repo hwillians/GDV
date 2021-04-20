@@ -92,5 +92,29 @@ namespace MesClasses.GestionVehicules
                 WriteLine("Le vehicule a été supprimé");
             }
         }
+
+        public static void TrierVehicules(List<Vehicule> vehicules)
+        {
+            string tri = "";
+
+            while (tri != "ma" && tri != "mo" && tri != "nu" && tri != "po" && tri != "pu")
+                tri = GetString($"Sur quel critère voulez vous faire le tri ? \n " +
+                    $"marque : ma, modèle : mo, numéro : nu,  puissance : pu, poids : ");
+
+            switch (tri)
+            {
+                case "ma":
+                    WriteLine(String.Join("\n", vehicules.OrderBy(v => v.Marque))); break;
+                case "mo":
+                    WriteLine(String.Join("\n", vehicules.OrderBy(v => v.Modele))); break;
+                case "nu":
+                    WriteLine(String.Join("\n", vehicules.OrderBy(v => v.Numero))); break;
+                case "po":
+                    WriteLine(String.Join("\n", vehicules.Where(v => !UneVoiture(v)).OrderBy(v => (v as Camion).Poids))); break;
+                case "pu":
+                    WriteLine(String.Join("\n", vehicules.Where(v => UneVoiture(v)).OrderBy(v => (v as Voiture).Puissance))); break;
+                default: break;
+            }
+        }
     }
 }

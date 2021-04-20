@@ -11,7 +11,14 @@ namespace MesClasses
         public static void Selection()
         {
             int? choix = null;
-            var vehicules = new List<Vehicule>();
+            var vehicules = new List<Vehicule>() {
+                new Voiture("Seat", "leon", 1000, 150),
+                new Voiture("Renault", "megane", 1001,130),
+                new Voiture("Citroën", "c3", 1005, 140),
+                new Camion("Volkswagen","Transporter",1004,3000),
+                new Camion("Reanult","Truck",1002,3500),
+                new Camion("Iveco","Eurocargo",1003,1500)};
+
             Console.WriteLine($"*.*.*.*.* Menu Gestion de vehicules *.*.*.*.*");
             while (choix != 0)
             {
@@ -31,12 +38,13 @@ namespace MesClasses
                     case 2: LireVehicule(vehicules); break;
                     case 3: ModifierVehicule(vehicules); break;
                     case 4: SupprimerVehicule(vehicules); break;
-                    case 5: Console.WriteLine("Cette action n'est pas encore disponible"); break;
+                    case 5: TrierVehicules(vehicules); break;
                     case 6: Console.WriteLine("Cette action n'est pas encore disponible"); break;
                     case 7: Console.WriteLine("Cette action n'est pas encore disponible"); break;
                     case 0: Console.WriteLine("à bientôt..."); break;
                     default: Console.WriteLine("Action pas recunnue"); break;
                 }
+                Console.WriteLine();
             }
         }
     }
