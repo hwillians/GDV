@@ -12,10 +12,10 @@ namespace MesClasses
         {
             int? choix = null;
             var vehicules = new List<Vehicule>();
+            Console.WriteLine($"*.*.*.*.* Menu Gestion de vehicules *.*.*.*.*");
             while (choix != 0)
             {
-                choix = GetInt($"Menu Gestion de vehicules :\n" +
-                   $"Choisissez une action :\n" +
+                choix = GetInt($"Choisissez une action :\n" +
                    $"1._ Créer un véhicule\n" +
                    $"2._ Voir un véhicule\n" +
                    $"3._ Mettre à jour un véhicule\n" +
@@ -30,7 +30,7 @@ namespace MesClasses
                     case 1: vehicules.Add(CreerVehicule()); break;
                     case 2: LireVehicule(vehicules); break;
                     case 3: ModifierVehicule(vehicules); break;
-                    case 4: Console.WriteLine("Cette action n'est pas encore disponible"); break;
+                    case 4: SupprimerVehicule(vehicules); break;
                     case 5: Console.WriteLine("Cette action n'est pas encore disponible"); break;
                     case 6: Console.WriteLine("Cette action n'est pas encore disponible"); break;
                     case 7: Console.WriteLine("Cette action n'est pas encore disponible"); break;

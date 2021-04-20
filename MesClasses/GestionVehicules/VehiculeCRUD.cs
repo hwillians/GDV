@@ -9,6 +9,11 @@ namespace MesClasses.GestionVehicules
 {
     public static class VehiculeCRUD
     {
+
+        private static bool UneVoiture(Vehicule vehicule) => vehicule.GetType().Name == "Voiture";
+
+        static Func<Vehicule, bool> Test(int numero) => v => v.Numero == numero;
+
         public static Vehicule CreerVehicule()
         {
             string typeVehicule = "";
@@ -20,17 +25,15 @@ namespace MesClasses.GestionVehicules
                 new Voiture(GetString("Marque (sans chiffer) : "), GetString("Modèle : "), GetInt("Numéro : "), GetInt("Puissance : ")) :
                 new Camion(GetString("Marque (sans chiffer) : "), GetString("Modèle : "), GetInt("Numéro : "), GetInt("Poids : "));
 
-            var e = typeVehicule == "v" ? "e" : "";
-
-            WriteLine($"Un{e} {vehicule.GetType().Name.ToLower()} viens d'être créé{e} : \n{vehicule}");
+            WriteLine(String.Format("Un{0} {1} viens d'être créé{0} : \n{2}",
+                UneVoiture(vehicule) ? "e" : "", vehicule.GetType().Name.ToLower(), vehicule));
             return vehicule;
         }
 
-        static Func<Vehicule, bool> Test(int numero) => v => v.Numero == numero;
 
         public static Vehicule LireVehicule(List<Vehicule> vehicules)
         {
-            if (vehicules.Count == 0) WriteLine("Il y a  pas encore des vehicules enregistrés");
+            if (vehicules.Count == 0) WriteLine("Il y a pas des vehicules enregistrés");
             else
             {
                 foreach (Vehicule v in vehicules) WriteLine(v);
@@ -50,11 +53,10 @@ namespace MesClasses.GestionVehicules
             if (vehicule != null)
             {
                 string modification = "";
-                bool uneVoiture = vehicule.GetType().Name == "Voiture";
 
                 while (modification != "ma" && modification != "mo" && modification != "n" && modification != "p" && modification != "t")
                     modification = GetString($"Quelle donnée voulez vous changer ? \n " +
-                        $"marque  : ma, modèle : mo, numéro : n, {(uneVoiture ? "puissance" : "poids")} : p, pour tout chager : t");
+                        $"marque  : ma, modèle : mo, numéro : n, {(UneVoiture(vehicule) ? "puissance" : "poids")} : p, pour tout chager : t");
 
                 switch (modification)
                 {
@@ -63,7 +65,7 @@ namespace MesClasses.GestionVehicules
                     case "n": vehicule.Numero = GetInt("Numéro : "); break;
                     case "p":
                         {
-                            if (uneVoiture) (vehicule as Voiture).Puissance = GetInt("Puissance : ");
+                            if (UneVoiture(vehicule)) (vehicule as Voiture).Puissance = GetInt("Puissance : ");
                             else (vehicule as Camion).Poids = GetInt("Poids : ");
                         };
                         break;
@@ -72,11 +74,22 @@ namespace MesClasses.GestionVehicules
                             vehicule.Marque = GetString("Marque : ");
                             vehicule.Modele = GetString("Modèle : ");
                             vehicule.Numero = GetInt("Numéro : ");
-                            if (uneVoiture) (vehicule as Voiture).Puissance = GetInt("Puissance : ");
+                            if (UneVoiture(vehicule)) (vehicule as Voiture).Puissance = GetInt("Puissance : ");
                             else (vehicule as Camion).Poids = GetInt("Poids : ");
                         }; break;
                     default: break;
                 }
+            }
+        }
+
+
+        public static void SupprimerVehicule(List<Vehicule> vehicules)
+        {
+            Vehicule vehicule = LireVehicule(vehicules);
+            if (vehicule != null)
+            {
+                vehicules.Remove(vehicule);
+                WriteLine("Le vehicule a été supprimé");
             }
         }
     }
