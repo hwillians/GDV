@@ -29,7 +29,7 @@ namespace MesClasses
                 {
                     case 1: vehicules.Add(CreerVehicule()); break;
                     case 2: LireVehicule(vehicules); break;
-                    case 3: Console.WriteLine("Cette action n'est pas encore disponible"); break;
+                    case 3: ModifierVehicule(vehicules); break;
                     case 4: Console.WriteLine("Cette action n'est pas encore disponible"); break;
                     case 5: Console.WriteLine("Cette action n'est pas encore disponible"); break;
                     case 6: Console.WriteLine("Cette action n'est pas encore disponible"); break;
@@ -37,7 +37,6 @@ namespace MesClasses
                     case 0: Console.WriteLine("à bientôt..."); break;
                     default: Console.WriteLine("Action pas recunnue"); break;
                 }
-                foreach (var item in vehicules) Console.WriteLine(item);
             }
         }
     }
