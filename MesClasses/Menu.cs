@@ -12,7 +12,7 @@ namespace MesClasses
         public static void Selection()
         {
             int? choix = null;
-            var vehicules = Fichiers.Lire();
+            var vehicules = Fichier.Lire();
 
             Console.WriteLine($"*.*.*.*.* Menu Gestion de vehicules *.*.*.*.*");
             while (choix != 0)
@@ -53,14 +53,14 @@ namespace MesClasses
                     case 4: SupprimerVehicule(vehicules); break;
                     case 5: TrierVehicules(vehicules); break;
                     case 6: FiltrerVehicules(vehicules); break;
-                    case 7: Fichiers.Ecrire(vehicules); break;
+                    case 7: Fichier.Ecrire(vehicules); break;
                     case 0:
                         {
                             var confirmation = "";
                             while (confirmation != "o" && confirmation != "n")
                                 confirmation = GetString("Voulez vous enregistrer avant sortit ? (o/n) : ").ToLower();
 
-                            if (confirmation == "o") Fichiers.Ecrire(vehicules);
+                            if (confirmation == "o") Fichier.Ecrire(vehicules);
                             Console.WriteLine("à bientôt...");
                         }
                         break;
