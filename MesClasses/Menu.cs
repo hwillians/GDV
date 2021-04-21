@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using static MesClasses.Autres.Outils;
+using MesClasses.GestionFichiers;
 using static MesClasses.GestionVehicules.VehiculeCRUD;
 
 namespace MesClasses
@@ -11,13 +12,7 @@ namespace MesClasses
         public static void Selection()
         {
             int? choix = null;
-            var vehicules = new List<Vehicule>() {
-                new Voiture("Seat", "leon", 1000, 150),
-                new Voiture("Renault", "megane", 1001,130),
-                new Voiture("Citroën", "c3", 1005, 140),
-                new Camion("Volkswagen","Transporter",1004,3000),
-                new Camion("Reanult","Truck",1002,3500),
-                new Camion("Iveco","Eurocargo",1003,1500)};
+            var vehicules = Fichiers.Lire();
 
             Console.WriteLine($"*.*.*.*.* Menu Gestion de vehicules *.*.*.*.*");
             while (choix != 0)
@@ -40,8 +35,17 @@ namespace MesClasses
                     case 4: SupprimerVehicule(vehicules); break;
                     case 5: TrierVehicules(vehicules); break;
                     case 6: FiltrerVehicules(vehicules); break;
-                    case 7: Console.WriteLine("Cette action n'est pas encore disponible"); break;
-                    case 0: Console.WriteLine("à bientôt..."); break;
+                    case 7: Fichiers.Ecrire(vehicules); break;
+                    case 0:
+                        {
+                            var confirmation = "";
+                            while (confirmation != "o" && confirmation != "n")
+                                confirmation = GetString("Voulez vous enregistrer avant sortit ? (o/n) : ").ToLower();
+
+                            if (confirmation == "o") Fichiers.Ecrire(vehicules);
+                            Console.WriteLine("à bientôt...");
+                        }
+                        break;
                     default: Console.WriteLine("Action pas recunnue"); break;
                 }
                 Console.WriteLine();
