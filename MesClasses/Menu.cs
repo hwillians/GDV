@@ -29,9 +29,27 @@ namespace MesClasses
 
                 switch (choix)
                 {
-                    case 1: vehicules.Add(CreerVehicule()); break;
+                    case 1:
+                        try
+                        {
+                            vehicules.Add(CreerVehicule());
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+                        break;
                     case 2: LireVehicule(vehicules); break;
-                    case 3: ModifierVehicule(vehicules); break;
+                    case 3:
+                        try
+                        {
+                            ModifierVehicule(vehicules);
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+                        break;
                     case 4: SupprimerVehicule(vehicules); break;
                     case 5: TrierVehicules(vehicules); break;
                     case 6: FiltrerVehicules(vehicules); break;

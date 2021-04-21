@@ -12,7 +12,6 @@ namespace MesClasses.GestionVehicules
 
         private static bool UneVoiture(Vehicule vehicule) => vehicule.GetType().Name == "Voiture";
 
-        static Func<Vehicule, bool> Test(int numero) => v => v.Numero == numero;
 
         public static Vehicule CreerVehicule()
         {
@@ -45,6 +44,7 @@ namespace MesClasses.GestionVehicules
             }
             return null;
         }
+        static Func<Vehicule, bool> Test(int numero) => v => v.Numero == numero;
 
         public static void ModifierVehicule(List<Vehicule> vehicules)
         {
