@@ -15,7 +15,7 @@ namespace MesClasses.GestionVehicules
             string typeVehicule = "";
 
             while (typeVehicule != "v" && typeVehicule != "c")
-                typeVehicule = GetString("Tapaz c pour créer un Camion, v pour créer une voiture : ");
+                typeVehicule = GetString("Tapez c pour créer un camion, v pour créer une voiture : ");
 
             var marque = GetString("Marque (sans chiffer) : ");
             var modele = GetString("Modèle : ");
@@ -33,12 +33,12 @@ namespace MesClasses.GestionVehicules
 
         public static Vehicule LireVehicule(List<Vehicule> vehicules)
         {
-            if (!vehicules.Any()) WriteLine("Il y a pas des vehicules enregistrés");
+            if (!vehicules.Any()) WriteLine("Il n'y a pas des véhicules enregistrés");
             else
             {
                 foreach (Vehicule v in vehicules) WriteLine(v);
 
-                var numero = GetInt("Tapez le numéro de vehicule : ");
+                var numero = GetInt("Tapez le numéro de véhicule : ");
                 var vehicule = vehicules.Any(Test(numero)) ? vehicules.First(Test(numero)) : null;
 
                 WriteLine(vehicules.Any(Test(numero)) ? vehicule : "Ce numéro n'est pas registré");
@@ -56,7 +56,7 @@ namespace MesClasses.GestionVehicules
                 string modification = "";
 
                 while (modification != "ma" && modification != "mo" && modification != "n" && modification != "p" && modification != "t")
-                    modification = GetString($"Quelle donnée voulez vous changer ? \n " +
+                    modification = GetString($"Quelle donnée voulez-vous changer ? \n " +
                         $"marque (ma), modèle (mo), numéro (n), {(vehicule is Voiture ? "puissance" : "poids")} (p), pour tout chager (t) : ");
 
                 switch (modification)
@@ -98,7 +98,7 @@ namespace MesClasses.GestionVehicules
             string tri = "";
 
             while (tri != "ma" && tri != "mo" && tri != "nu" && tri != "po" && tri != "pu")
-                tri = GetString($"Sur quel critère voulez vous faire le tri ? \n " +
+                tri = GetString($"Sur quel critère voulez-vous faire le tri ? \n " +
                     $"marque (ma), modèle (mo), numéro (nu), puissance (pu), poids (po) : ");
 
             switch (tri)

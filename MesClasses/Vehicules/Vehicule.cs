@@ -17,7 +17,7 @@ namespace MesClasses.Vehicules
             set
             {
                 if (!value.Any(x => char.IsDigit(x))) marque = value.ToUpper();
-                else throw new Exception("La marque ne peut pas comporter de chiffre");
+                else throw new Exception("La marque ne peut pas comporter de chiffres");
             }
         }
         public string Modele
