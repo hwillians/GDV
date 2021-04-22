@@ -21,19 +21,21 @@ namespace MesClasses.GestionVehicules
             var modele = GetString("Modèle : ");
             var numero = GetInt("Numéro : ");
             var poidsOrPuissance = GetInt(typeVehicule == "v" ? "Puissance : " : "Poids : ");
-      
+
             Vehicule vehicule = typeVehicule == "v" ?
                 new Voiture(marque, modele, numero, poidsOrPuissance) :
                 new Camion(marque, modele, numero, poidsOrPuissance);
 
             WriteLine(String.Format("Un{0} {1} viens d'être créé{0} : \n{2}",
                 vehicule is Voiture ? "e" : "", vehicule.GetType().Name.ToLower(), vehicule));
+
             return vehicule;
         }
 
         public static Vehicule LireVehicule(List<Vehicule> vehicules)
         {
-            if (!vehicules.Any()) WriteLine("Il n'y a pas des véhicules enregistrés");
+            if (!vehicules.Any())
+                WriteLine("Il n'y a pas des véhicules enregistrés");
             else
             {
                 foreach (Vehicule v in vehicules) WriteLine(v);
@@ -61,22 +63,26 @@ namespace MesClasses.GestionVehicules
 
                 switch (modification)
                 {
-                    case "ma": vehicule.Marque = GetString("Marque  (sans chiffres) :  "); break;
-                    case "mo": vehicule.Modele = GetString("Modèle : "); break;
-                    case "n": vehicule.Numero = GetInt("Numéro : "); break;
+                    case "ma":
+                        vehicule.Marque = GetString("Marque  (sans chiffres) :  "); break;
+                    case "mo":
+                        vehicule.Modele = GetString("Modèle : "); break;
+                    case "n":
+                        vehicule.Numero = GetInt("Numéro : "); break;
                     case "p":
                         {
                             if (vehicule is Voiture) (vehicule as Voiture).Puissance = GetInt("Puissance : ");
                             else (vehicule as Camion).Poids = GetInt("Poids : ");
-                        };
-                        break;
+                        }; break;
                     case "t":
                         {
                             vehicule.Marque = GetString("Marque  (sans chiffres) : ");
                             vehicule.Modele = GetString("Modèle : ");
                             vehicule.Numero = GetInt("Numéro : ");
-                            if (vehicule is Voiture) (vehicule as Voiture).Puissance = GetInt("Puissance : ");
-                            else (vehicule as Camion).Poids = GetInt("Poids : ");
+                            if (vehicule is Voiture)
+                                (vehicule as Voiture).Puissance = GetInt("Puissance : ");
+                            else
+                                (vehicule as Camion).Poids = GetInt("Poids : ");
                         }; break;
                     default: break;
                 }

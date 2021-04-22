@@ -53,17 +53,23 @@ namespace MesClasses
                             Console.WriteLine(e.Message);
                         }
                         break;
-                    case 5: SupprimerVehicule(vehicules); break;
-                    case 6: TrierVehicules(vehicules); break;
-                    case 7: FiltrerVehicules(vehicules); break;
-                    case 8: Fichier.Ecrire(vehicules); break;
+                    case 5: 
+                        SupprimerVehicule(vehicules); break;
+                    case 6:
+                        TrierVehicules(vehicules); break;
+                    case 7:
+                        FiltrerVehicules(vehicules); break;
+                    case 8:
+                        Fichier.Ecrire(vehicules); break;
                     case 0:
                         {
                             var confirmation = "";
                             while (confirmation != "o" && confirmation != "n")
                                 confirmation = GetString("Voulez-vous enregistrer avant de sortir ? (o/n) : ").ToLower();
 
-                            if (confirmation == "o") Fichier.Ecrire(vehicules);
+                            if (confirmation == "o") 
+                                Fichier.Ecrire(vehicules);
+
                             Console.WriteLine("à bientôt...");
                         }
                         break;
